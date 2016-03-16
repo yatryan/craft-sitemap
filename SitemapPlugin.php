@@ -10,17 +10,17 @@ class SitemapPlugin extends BasePlugin
 
     function getVersion()
     {
-        return '1.0';
+        return '1.1';
     }
 
     function getDeveloper()
     {
-        return 'NXNW - Brandon Garcia-Acain';
+        return 'Taylor Ryan (modified from nxnw/craft-sitemap)';
     }
 
     function getDeveloperUrl()
     {
-        return 'http://nxnw.net/';
+        return 'https://github.com/yatryan/craft-sitemap';
     }
 
     public function hasCpSection()

@@ -3,11 +3,11 @@ Craft Sitemap Plugin
 
 ### Summary
 
-This is a plugin for the Craft CMS to add sitemap generation functionality. Based on the options you select for your Sections, it generates a sitemap.xml file for all the entries of the sections you want included.  Entries must be live to be included in sitemap.xml file.
+This is a plugin for the Craft CMS to add sitemap generation functionality. Based on the options you select for your Sections, it provides a sitemap.xml endpoint that automatically includes all the entries of the sections you selected.  Entries must be live to be included.
 
 ###Installation
 
-1. Clone this project into `your_craft_dir/craft/plugins/sitemap`
+1. Clone this project into `craft/plugins/sitemap`
 2. Install the plugin through the Craft admin panel
 
 ###Usage
@@ -17,8 +17,8 @@ This is a plugin for the Craft CMS to add sitemap generation functionality. Base
 3. Select the frequency in which you believe changes will be made to the Entries in each Section.
 4. Select the priority of included files. 1.0 is the highest priority and 0.0 is the lowest.
 5. Either click
-    - 'Save' to just save your configurations and generate the sitemap
-    - 'Save & Ping' to save configurations, generate the sitemap, AND ping search engines to let them know to crawl your site
+    - 'Save' to just save your configurations.
+    - 'Save & Ping' to save configurations, and ping search engines to let them know to crawl your site
 
 ###Optional Widget
 

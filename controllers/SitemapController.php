@@ -22,11 +22,13 @@ class SitemapController extends BaseController
             $no_err = craft()->sitemap->saveSections($mod);
         }
         if($no_err) {
-            craft()->userSession->setNotice(Craft::t('Sitemap Created'));
+            craft()->userSession->setNotice(Craft::t('Sitemap Settings Saved'));
         } else {
             craft()->userSession->setNotice(Craft::t('Error'));
         }
-        craft()->sitemap->generateSitemap();
+
+        // Not generating static file due to Route automatically generating sitemap.xml
+        // craft()->sitemap->generateSitemap();
 
     }
 
