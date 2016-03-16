@@ -28,6 +28,13 @@ class SitemapPlugin extends BasePlugin
         return true;
     }
 
+    public function registerSiteRoutes()
+  	{
+  		return array(
+  			'sitemap.xml' => array('action' => 'sitemap/index'),
+  		);
+  	}
+
     public function onBeforeUninstall()
     {
         unlink($_SERVER['DOCUMENT_ROOT'] . '/sitemap.xml');

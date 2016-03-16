@@ -36,4 +36,34 @@ class SitemapController extends BaseController
         craft()->sitemap->pingSearchEngines();
         craft()->userSession->setNotice(Craft::t('Search Engines have been pinged'));
     }
+
+    public function actionIndex()
+  	{
+      $entRec = EntryRecord::model();
+      $base_url = UrlHelper::getSiteUrl();
+  		$xml = new \SimpleXMLElement(
+  			'<?xml version="1.0" encoding="UTF-8"?>' .
+  			'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"/>'
+  		);
+      $sections = craft()->sitemap->getAllIncludedSections();
+      foreach($sections as $section) {
+          $entries = $entRec->findAll('sectionId=:id', array('id' => $section->sectionId));
+          $models = EntryModel::populateModels($entries);
+          foreach($models as $entry) {
+              $element = ElementRecord::model()->find('id=:id', array('id' => $entry->id));
+              if($element->enabled == 1) {
+                  $elementLoc = ElementLocaleRecord::model()->find('elementId=:id', array('id' => $entry->id));
+                  $url = $xml->addChild('url');
+                  $url->addChild('loc', $base_url . ($elementLoc->uri == '__home__' ? '' : $elementLoc->uri));
+          				$url->addChild('lastmod', $entry->dateUpdated->format(\DateTime::W3C));
+                  $url->addChild('changefreq', $section->frequency);
+          				$url->addChild('priority', $section->priority);
+              }
+          }
+      }
+  		HeaderHelper::setContentTypeByExtension('xml');
+  		ob_start();
+  		echo $xml->asXML();
+  		craft()->end();
+  	}
 }
