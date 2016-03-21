@@ -4,6 +4,9 @@ namespace Craft;
 
 class SitemapController extends BaseController
 {
+
+    protected $allowAnonymous = true;
+    
     public function actionSaveSections($ping = false)
     {
         $no_err = true;
